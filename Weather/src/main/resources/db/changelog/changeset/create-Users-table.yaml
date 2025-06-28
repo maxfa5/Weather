@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-Users-table
+      author: Max Fa
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: Login
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Password
+                  type: varchar(200)
+                  constraints:
+                    nullable: false

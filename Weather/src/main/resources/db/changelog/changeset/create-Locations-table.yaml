@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-Locations-table
+      author: Max Fa
+      changes:
+        - createTable:
+            tableName: locations
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: latitude
+                  type: DOUBLE PRECISION
+                  constraints:
+                    nullable: false
+              - column:
+                  name: longitude
+                  type: DOUBLE PRECISION
+                  constraints:
+                    nullable: false

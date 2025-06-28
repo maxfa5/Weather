@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-Sessions-table
+      author: Max Fa
+      changes:
+        - createTable:
+            tableName: sessions
+            columns:
+              - column:
+                  name: id
+                  type: UUID  # Для MySQL замените на VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: sessions
+            baseColumnNames: user_id
+            constraintName: fk_sessions_user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE
