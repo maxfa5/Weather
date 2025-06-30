@@ -137,19 +137,11 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">Weather App</div>
-            <nav class="nav">
-                <a href="/dashboard">Главная</a>
-                <a href="/weather">Погода</a>
-                <a href="/profile">Профиль</a>
-                <a href="/logout">Выйти</a>
-            </nav>
-        </div>
-    </header>
+    <!-- Header -->
+    <header th:replace="~{layout/fragments :: header}"></header>
 
-    <div class="container">
+    <!-- Main Content -->
+    <main class="container">
         <div class="weather-card">
             <form class="search-form">
                 <input type="text" class="search-input" placeholder="Введите название города..." value="Москва">
@@ -180,6 +172,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/fragments :: footer}"></footer>
 </body>
 </html> 
