@@ -3,6 +3,7 @@ package org.project.controller;
 import java.util.UUID;
 
 import org.project.service.AuthService;
+import org.project.service.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
 
     private final AuthService authService;
+    private final CookieService cookieService;
     
     @Autowired
-    public LoginController(AuthService authService) {
+    public LoginController(AuthService authService, CookieService cookieService) {
         this.authService = authService;
+        this.cookieService = cookieService;
     }
 
     @GetMapping("/login")
@@ -40,10 +42,7 @@ public class LoginController {
         
         try {
             UUID sessionId = authService.auth(login, password);
-            Cookie cookie = new Cookie("sessionId", sessionId.toString());
-            cookie.setMaxAge(3600); // 1 час
-            cookie.setPath("/");
-            response.addCookie(cookie);
+            cookieService.createSessionCookie(response, sessionId);
             return "redirect:/dashboard";
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
