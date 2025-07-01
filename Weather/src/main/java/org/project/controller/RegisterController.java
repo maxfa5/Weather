@@ -1,6 +1,8 @@
 package org.project.controller;
 
 import org.project.service.RegisterService;
+import org.project.exceptions.UserAlreadyExistsException;
+import org.project.exceptions.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +43,10 @@ public class RegisterController {
         try {
             registerService.register(login, password);
             return "redirect:/login?success=true";
-        } catch (RuntimeException e) {
+        } catch (UserAlreadyExistsException e) {
+            model.addAttribute("error", e.getMessage());
+            return "auth/register";
+        } catch (ValidationException e) {
             model.addAttribute("error", e.getMessage());
             return "auth/register";
         }

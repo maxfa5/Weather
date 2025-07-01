@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import org.project.service.AuthService;
 import org.project.service.CookieService;
+import org.project.exceptions.UserNotFoundException;
+import org.project.exceptions.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +46,10 @@ public class LoginController {
             UUID sessionId = authService.auth(login, password);
             cookieService.createSessionCookie(response, sessionId);
             return "redirect:/dashboard";
-        } catch (RuntimeException e) {
+        } catch (UserNotFoundException e) {
+            model.addAttribute("error", e.getMessage());
+            return "auth/login";
+        } catch (InvalidCredentialsException e) {
             model.addAttribute("error", e.getMessage());
             return "auth/login";
         }

@@ -2,6 +2,8 @@ package org.project.service;
 
 import org.springframework.stereotype.Service;
 import org.project.repository.UserRepository;
+import org.project.exceptions.UserNotFoundException;
+import org.project.exceptions.InvalidCredentialsException;
 
 import java.util.UUID;
 
@@ -18,13 +20,13 @@ public class AuthService {
         this.sessionService = sessionService;
     }
 
-    public UUID auth(String login, String password) {
-        UserModel user = userRepository.findByLogin(login);
+    public UUID auth(String login, String password) throws UserNotFoundException, InvalidCredentialsException {
+        UserModel user = userRepository.findByLogin(login).orElse(null);
         if (user == null) {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException("Пользователь с логином '" + login + "' не найден");
         }
         if (!user.getPassword().equals(password)) {
-            throw new RuntimeException("Invalid password");
+            throw new InvalidCredentialsException("Неверный пароль");
         }
         UUID sessionId = sessionService.createSession(user);
         return sessionId;
