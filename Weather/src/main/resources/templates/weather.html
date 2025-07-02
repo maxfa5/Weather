@@ -493,6 +493,36 @@
             cursor: pointer;
             margin-top: 1rem;
         }
+
+        .weather-status {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
+        }
+        .weather-description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 0.7rem;
+            font-style: italic;
+        }
+        .weather-temperature {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 0.5rem;
+        }
+        .weather-wind-speed, .weather-wind-direction {
+            display: inline-block;
+            font-size: 0.95rem;
+            color: #333;
+            background: #e3e8f7;
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.2rem;
+        }
     </style>
 </head>
 <body>
@@ -577,10 +607,26 @@
                     if (data.success) {
                         weatherInfo.innerHTML = `
                             <div class="weather-display">
-                                <h4>Погода в ${data.city}</h4>
-                                <div class="weather-data">${data.weatherData}</div>
+                                <div class="weather-status">${data.weatherStatus}</div>
+                                <div class="weather-description">${data.weatherDescription}</div>
+                                <div class="weather-temperature">${data.weatherTemperature}</div>
+                                <div class="weather-wind-speed">Скорость ветра: ${data.weatherWindSpeed}</div>
+                                <div class="weather-wind-direction">
+                                    Направление ветра: 
+                                    <span style="display:inline-block;vertical-align:middle;width:24px;height:24px;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" style="transform: rotate(${data.weatherWindDirection}deg);transition:transform 0.3s;">
+                                            <polygon points="12,2 16,10 13,10 13,22 11,22 11,10 8,10" fill="#667eea"/>
+                                        </svg>
+                                    </span>
+                                    <span style="margin-left:6px;font-size:0.95em;">${data.weatherWindDirection}° ${getWindDirectionText(data.weatherWindDirection)}</span>
+                                </div>
                             </div>
                         `;
+                        // Функция для перевода градусов в направление
+                        function getWindDirectionText(deg) {
+                            const dirs = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
+                            return dirs[Math.round(((deg % 360) / 45)) % 8];
+                        }
                     } else {
                         weatherInfo.innerHTML = `
                             <div class="weather-display">
@@ -625,9 +671,26 @@
                     if (data.success) {
                         searchResult.className = 'search-result success';
                         searchResult.innerHTML = `
-                            <h4>Погода в ${data.city}</h4>
-                            <div class="weather-data">${data.weatherData}</div>
+                            <div class="weather-display">
+                                <div class="weather-status">${data.weatherStatus}</div>
+                                <div class="weather-description">${data.weatherDescription}</div>
+                                <div class="weather-temperature">${data.weatherTemperature}</div>
+                                <div class="weather-wind-speed">Скорость ветра: ${data.weatherWindSpeed}</div>
+                                <div class="weather-wind-direction">
+                                    Направление ветра: 
+                                    <span style="display:inline-block;vertical-align:middle;width:24px;height:24px;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" style="transform: rotate(${data.weatherWindDirection}deg);transition:transform 0.3s;">
+                                            <polygon points="12,2 16,10 13,10 13,22 11,22 11,10 8,10" fill="#667eea"/>
+                                        </svg>
+                                    </span>
+                                    <span style="margin-left:6px;font-size:0.95em;">${data.weatherWindDirection}° ${getWindDirectionText(data.weatherWindDirection)}</span>
+                                </div>
+                            </div>
                         `;
+                        function getWindDirectionText(deg) {
+                            const dirs = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
+                            return dirs[Math.round(((deg % 360) / 45)) % 8];
+                        }
                     } else {
                         searchResult.className = 'search-result error';
                         searchResult.textContent = data.message;

@@ -14,6 +14,7 @@ import org.project.service.LocationService;
 import org.project.service.WeatherService;
 import org.project.service.CookieService;
 import org.project.model.LocationModel;
+import org.project.DTO.WeatherDataDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,7 @@ public class WeatherAPIController {
             model.addAttribute("userId", userId);
         } catch (Exception e) {
             model.addAttribute("error", "Ошибка при получении локаций: " + e.getMessage());
+            return "auth/login";
         }
         return "weather";
     }
@@ -51,11 +53,22 @@ public class WeatherAPIController {
         Map<String, Object> response = new HashMap<>();
         
         try {
-            String weatherData = weatherService.getWeather(city);
+            WeatherDataDTO weatherData = weatherService.getWeather(city);
             if (weatherData != null) {
+                try {
                 response.put("success", true);
-                response.put("weatherData", weatherData);
+                response.put("weatherStatus", weatherData.getWeather().get(0).getMain());
+                response.put("weatherDescription", weatherData.getWeather().get(0).getDescription());
+                response.put("weatherTemperature", weatherData.getMain().getTemp());
+                response.put("weatherHumidity", weatherData.getMain().getHumidity());
+                response.put("weatherWindSpeed", weatherData.getWind().getSpeed());
+                response.put("weatherWindDirection", weatherData.getWind().getDeg());
+                // response.put("weatherClouds", weatherData.getClouds().getAll());
                 response.put("city", city);
+                } catch (Exception e) {
+                    response.put("success", false);
+                    response.put("message", "Не удалось получить данные о погоде для города: " + city);
+                }
             } else {
                 response.put("success", false);
                 response.put("message", "Не удалось получить данные о погоде для города: " + city);

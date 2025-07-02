@@ -1,7 +1,9 @@
 package org.project.controller;
 
+import org.project.DTO.WeatherDataDTO;
 import org.project.model.LocationModel;
 import org.project.service.LocationService;
+import org.project.service.WeatherService;
 import org.project.service.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +20,18 @@ public class LocationController {
 
     private final LocationService locationService;
     private final CookieService cookieService;
-
+    private final WeatherService weatherService;
     @Autowired
-    public LocationController(LocationService locationService, CookieService cookieService) {
+    public LocationController(LocationService locationService, CookieService cookieService, WeatherService weatherService) {
         this.locationService = locationService;
         this.cookieService = cookieService;
+        this.weatherService = weatherService;
     }
 
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> addLocation(
             @RequestParam String name,
-            @RequestParam double latitude,
-            @RequestParam double longitude,
             HttpServletRequest request) {
         
         Map<String, Object> response = new HashMap<>();
@@ -39,9 +40,10 @@ public class LocationController {
             int userId = cookieService.getUserIdFromSession(request);
             
             LocationModel location = new LocationModel();
+            WeatherDataDTO weatherData = weatherService.getWeather(name);
             location.setName(name);
-            location.setLatitude(latitude);
-            location.setLongitude(longitude);
+            location.setLatitude(Double.parseDouble(weatherData.getCoord().getLat()));
+            location.setLongitude(Double.parseDouble(weatherData.getCoord().getLon()));
             location.setUserId(userId);
             
             LocationModel savedLocation = locationService.addLocation(location);
