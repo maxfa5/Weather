@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/changeset/create-Locations-table.yaml
   - include:
       file: db/changelog/changeset/create-Sessions-table.yaml
+  - include:
+      file: db/changelog/changes/002-add-user-id-to-locations.yaml

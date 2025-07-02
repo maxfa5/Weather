@@ -203,6 +203,296 @@
             margin-top: 100px;
             margin-bottom: 100px;
         }
+
+        /* Error message */
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid #fcc;
+        }
+
+        /* Locations section */
+        .locations-section {
+            margin-bottom: 3rem;
+        }
+
+        .locations-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .locations-section h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .add-location-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .add-location-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .location-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .location-header {
+            margin-bottom: 1rem;
+        }
+
+        .location-header {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .location-header h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            padding-right: 30px;
+        }
+
+        .delete-location-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 25px;
+            height: 25px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .delete-location-btn:hover {
+            background: #ff3742;
+        }
+
+        .location-coords {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .weather-info {
+            margin: 1rem 0;
+            min-height: 100px;
+        }
+
+        .weather-loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .weather-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .weather-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* No locations message */
+        .no-locations {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .no-locations h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-locations p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Weather search card */
+        .weather-search-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-search-card h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .search-result.success {
+            background: #efe;
+            color: #3c3;
+            border: 1px solid #cfc;
+            display: block;
+        }
+
+        .search-result.error {
+            background: #fee;
+            color: #c33;
+            border: 1px solid #fcc;
+            display: block;
+        }
+
+        /* Weather display */
+        .weather-display {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .weather-display h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .weather-data {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #666;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .modal-content h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .modal-content .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .modal-content .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .modal-content .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -211,39 +501,265 @@
 
     <!-- Main Content -->
     <main class="container">
-        <div class="weather-card">
-            <form class="search-form">
-                <input type="text" class="search-input" placeholder="Введите название города..." value="Москва">
-                <button type="submit" class="search-btn">Найти</button>
-            </form>
+        <!-- Сообщения об ошибках -->
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
 
-            <div class="weather-icon">☀️</div>
-            <div class="temperature" th:text="${temperature}">22°C</div>
-            <div class="city" th:text="${city}">Москва</div>
-            <div class="description" th:text="${description}">Солнечно</div>
-
-            <div class="weather-details">
-                <div class="detail-item">
-                    <div class="detail-label">Влажность</div>
-                    <div class="detail-value">65%</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Ветер</div>
-                    <div class="detail-value">5 м/с</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Давление</div>
-                    <div class="detail-value">1013 hPa</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Видимость</div>
-                    <div class="detail-value">10 км</div>
+        <!-- Список локаций пользователя -->
+        <div class="locations-section" th:if="${not #lists.isEmpty(locations)}">
+            <div class="locations-header">
+                <h2>Мои локации</h2>
+                <button class="add-location-btn" onclick="showAddLocationForm()">+ Добавить локацию</button>
+            </div>
+            <div class="locations-grid">
+                <div th:each="location : ${locations}" class="location-card" th:attr="data-location-id=${location.id}">
+                    <div class="location-header">
+                        <h3 th:text="${location.name}">Город</h3>
+                        <div class="location-coords">
+                            <span th:text="${location.latitude}">55.7558</span>°, 
+                            <span th:text="${location.longitude}">37.6176</span>°
+                        </div>
+                        <button class="delete-location-btn" th:onclick="'deleteLocation(' + ${location.id} + ')'">×</button>
+                    </div>
+                    <div class="weather-info" th:id="'weather-' + ${location.id}">
+                        <div class="weather-loading">Загрузка погоды...</div>
+                    </div>
+                    <button class="weather-btn" th:attr="data-city=${location.name},data-id=${location.id}">
+                        Обновить погоду
+                    </button>
                 </div>
             </div>
+        </div>
+
+        <!-- Форма добавления локации -->
+        <div id="addLocationModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="hideAddLocationForm()">&times;</span>
+                <h3>Добавить новую локацию</h3>
+                <form id="addLocationForm">
+                    <div class="form-group">
+                        <label for="locationName">Название города</label>
+                        <input type="text" id="locationName" name="name" required>
+                    </div>
+                    <button type="submit" class="btn">Добавить локацию</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Сообщение если нет локаций -->
+        <div th:if="${#lists.isEmpty(locations)}" class="no-locations">
+            <h2>У вас пока нет сохраненных локаций</h2>
+            <p>Добавьте свои любимые города, чтобы получать прогноз погоды</p>
+        </div>
+
+        <!-- Форма поиска погоды -->
+        <div class="weather-search-card">
+            <h2>Поиск погоды</h2>
+            <form class="search-form" id="weatherSearchForm">
+                <input type="text" class="search-input" id="cityInput" placeholder="Введите название города..." required>
+                <button type="submit" class="search-btn">Найти погоду</button>
+            </form>
+            <div id="searchResult" class="search-result"></div>
         </div>
     </main>
 
     <!-- Footer -->
     <div th:replace="~{layout/fragments :: footer}"></div>
+
+    <script>
+        // Функция для получения погоды для конкретной локации
+        function getWeather(city, locationId) {
+            const weatherInfo = document.getElementById('weather-' + locationId);
+            weatherInfo.innerHTML = '<div class="weather-loading">Загрузка погоды...</div>';
+            
+            fetch(`/weather?city=${encodeURIComponent(city)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        weatherInfo.innerHTML = `
+                            <div class="weather-display">
+                                <h4>Погода в ${data.city}</h4>
+                                <div class="weather-data">${data.weatherData}</div>
+                            </div>
+                        `;
+                    } else {
+                        weatherInfo.innerHTML = `
+                            <div class="weather-display">
+                                <h4>Ошибка</h4>
+                                <div class="weather-data">${data.message}</div>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    weatherInfo.innerHTML = `
+                        <div class="weather-display">
+                            <h4>Ошибка</h4>
+                            <div class="weather-data">Ошибка сети: ${error.message}</div>
+                        </div>
+                    `;
+                });
+        }
+
+        // Обработка формы поиска погоды
+        document.getElementById('weatherSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const cityInput = document.getElementById('cityInput');
+            const searchResult = document.getElementById('searchResult');
+            const city = cityInput.value.trim();
+            
+            if (!city) {
+                searchResult.className = 'search-result error';
+                searchResult.textContent = 'Пожалуйста, введите название города';
+                searchResult.style.display = 'block';
+                return;
+            }
+            
+            searchResult.className = 'search-result';
+            searchResult.textContent = 'Загрузка...';
+            searchResult.style.display = 'block';
+            
+            fetch(`/weather?city=${encodeURIComponent(city)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        searchResult.className = 'search-result success';
+                        searchResult.innerHTML = `
+                            <h4>Погода в ${data.city}</h4>
+                            <div class="weather-data">${data.weatherData}</div>
+                        `;
+                    } else {
+                        searchResult.className = 'search-result error';
+                        searchResult.textContent = data.message;
+                    }
+                })
+                .catch(error => {
+                    searchResult.className = 'search-result error';
+                    searchResult.textContent = 'Ошибка сети: ' + error.message;
+                });
+        });
+
+        // Функции для работы с модальным окном
+        function showAddLocationForm() {
+            document.getElementById('addLocationModal').style.display = 'block';
+        }
+
+        function hideAddLocationForm() {
+            document.getElementById('addLocationModal').style.display = 'none';
+        }
+
+        // Функция для добавления новой локации
+        function addLocation(name) {
+            const formData = new FormData();
+            formData.append('name', name);
+            fetch('/location/add', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    hideAddLocationForm();
+                    window.location.reload();
+                } else {
+                    alert('Ошибка при добавлении локации: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Ошибка сети: ' + error.message);
+            });
+        }
+
+        // Функция для удаления локации
+        function deleteLocation(locationId) {
+            if (!confirm('Вы уверены, что хотите удалить эту локацию?')) {
+                return;
+            }
+            
+            fetch(`/location/${locationId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Удаляем карточку локации из DOM
+                    const locationCard = document.querySelector(`[data-location-id="${locationId}"]`);
+                    if (locationCard) {
+                        locationCard.remove();
+                    }
+                    // Если нет больше локаций, перезагружаем страницу
+                    if (document.querySelectorAll('.location-card').length === 0) {
+                        window.location.reload();
+                    }
+                } else {
+                    alert('Ошибка при удалении локации: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Ошибка сети: ' + error.message);
+            });
+        }
+
+        // Обработка формы добавления локации
+        document.getElementById('addLocationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('locationName').value.trim();
+            if (!name) {
+                alert('Пожалуйста, введите название города');
+                return;
+            }
+            addLocation(name);
+        });
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('addLocationModal');
+            if (event.target === modal) {
+                hideAddLocationForm();
+            }
+        }
+
+        // Навешиваем обработчики на кнопки обновления погоды
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.weather-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const city = this.getAttribute('data-city');
+                    const id = this.getAttribute('data-id');
+                    getWeather(city, id);
+                });
+            });
+            // Автоматическая загрузка погоды для всех локаций при загрузке страницы
+            const locationCards = document.querySelectorAll('.location-card');
+            locationCards.forEach(card => {
+                const cityName = card.querySelector('h3').textContent;
+                const locationId = card.querySelector('.weather-info').id.replace('weather-', '');
+                setTimeout(() => getWeather(cityName, locationId), 1000);
+            });
+        });
+    </script>
 </body>
+    <!-- Кнопка для добавления локации (фиксированная внизу справа) -->
+    <button 
+        class="add-location-floating-btn" 
+        onclick="showAddLocationForm()" 
+        style="
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        "
+        title="Добавить локацию"
+    >+</button>
 </html> 

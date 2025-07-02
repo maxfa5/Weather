@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-add-user-id-to-locations
+      author: system
+      changes:
+        - addColumn:
+            tableName: locations
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    defaultValueNumeric: 1
+      rollback:
+        - dropColumn:
+            tableName: locations
+            columnName: user_id 

@@ -9,14 +9,14 @@ import java.net.http.HttpResponse;
 import java.io.IOException;
 
 @Service
-public class WeatherService {
+public class WeatherService { 
     @Value("${weather.api.key}")
     private String API_KEY;
     
     private final HttpClient httpClient = HttpClient.newHttpClient();
 
     public String getWeather(String city) {
-        String url = "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&appid=" + API_KEY;
+        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + API_KEY;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()

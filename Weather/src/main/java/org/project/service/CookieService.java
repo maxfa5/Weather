@@ -3,6 +3,9 @@ package org.project.service;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import org.project.model.SessionModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -12,6 +15,11 @@ import java.util.UUID;
 @Service
 public class CookieService {
 
+    private final SessionService sessionService;
+    @Autowired
+    public CookieService(SessionService sessionService) {
+        this.sessionService = sessionService;
+    }
     private static final String SESSION_COOKIE_NAME = "sessionId";
     private static final int SESSION_COOKIE_MAX_AGE = 3600; // 1 час
     private static final String COOKIE_PATH = "/";
@@ -25,7 +33,16 @@ public class CookieService {
         cookie.setSecure(false); // Установить true для HTTPS
         response.addCookie(cookie);
     }
-
+    public Optional<SessionModel> getSession(HttpServletRequest request) {
+        return getSessionId(request)
+                .map(sessionId -> {
+                    try {
+                        return sessionService.getSession(sessionId);
+                    } catch (Exception e) {
+                        return null;
+                    }
+                });
+    }
 
     public Optional<UUID> getSessionId(HttpServletRequest request) {
         if (request.getCookies() == null) {
@@ -44,6 +61,9 @@ public class CookieService {
                 });
     }
 
+    public int getUserIdFromSession(HttpServletRequest request) {
+        return getSession(request).orElse(null).getUser().getId();
+    }
 
     public void removeSessionCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie(SESSION_COOKIE_NAME, "");
