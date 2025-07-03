@@ -38,7 +38,7 @@ public class LocationController {
         
         try {
             int userId = cookieService.getUserIdFromSession(request);
-            
+                      
             LocationModel location = new LocationModel();
             WeatherDataDTO weatherData = weatherService.getWeather(name);
             location.setName(name);
@@ -56,7 +56,7 @@ public class LocationController {
             
         } catch (Exception e) {
             response.put("success", false);
-            response.put("message", "Ошибка при добавлении локации: " + e.getMessage());
+            response.put("message",  e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
     }

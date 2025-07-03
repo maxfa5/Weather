@@ -685,6 +685,26 @@
                                     </span>
                                     <span style="margin-left:6px;font-size:0.95em;">${data.weatherWindDirection}° ${getWindDirectionText(data.weatherWindDirection)}</span>
                                 </div>
+                                <button 
+        class="add-location-floating-btn" 
+        onclick="addLocation('${data.city}')" 
+        style="
+            z-index: 1000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        "
+        title="Добавить локацию"
+    >+</button>
                             </div>
                         `;
                         function getWindDirectionText(deg) {
@@ -801,28 +821,5 @@
         });
     </script>
 </body>
-    <!-- Кнопка для добавления локации (фиксированная внизу справа) -->
-    <button 
-        class="add-location-floating-btn" 
-        onclick="showAddLocationForm()" 
-        style="
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            z-index: 1000;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 2rem;
-            box-shadow: 0 4px 16px rgba(102,126,234,0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        "
-        title="Добавить локацию"
-    >+</button>
+    
 </html> 

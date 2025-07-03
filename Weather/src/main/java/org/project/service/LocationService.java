@@ -23,8 +23,19 @@ public class LocationService {
     public List<LocationModel> getLocations(int userId) {
         return locationRepository.findByUserId(userId);
     }
+    public int getCountLocations(int userId) {
+        return locationRepository.findByUserId(userId).size();
+    }
+    public boolean locationExists(int userId, LocationModel location) {
+        return locationRepository.findByUserId(userId)
+                .stream()
+                .anyMatch(loc -> loc.getName().equalsIgnoreCase(location.getName()) && loc.getLatitude() == location.getLatitude() && loc.getLongitude() == location.getLongitude());
+    }
 
     public LocationModel addLocation(LocationModel location) {
+        if (locationExists(location.getUserId(), location)) {
+            throw new RuntimeException("Локация уже существует");
+        }
         return locationRepository.save(location);
     }
 

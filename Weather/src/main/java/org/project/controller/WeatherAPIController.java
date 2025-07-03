@@ -47,6 +47,13 @@ public class WeatherAPIController {
         return "weather";
     }
 
+    @GetMapping("/locations/count")
+    @ResponseBody
+    public int getCountLocations(HttpServletRequest request) {
+        int userId = cookieService.getUserIdFromSession(request);
+        return locationService.getCountLocations(userId);
+    }
+
     @GetMapping("/weather")
     @ResponseBody
     public Map<String, Object> getWeatherForLocation(@RequestParam String city) {
