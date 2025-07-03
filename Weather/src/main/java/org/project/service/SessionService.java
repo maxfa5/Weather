@@ -41,4 +41,8 @@ public class SessionService {
             throw new RuntimeException("Session not found");
         }
     }
+
+    public void updateSession(SessionModel session) {
+        sessionRepository.save(session);
+    }
 }  

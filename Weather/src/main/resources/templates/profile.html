@@ -294,6 +294,9 @@
                     </div>
                 </div>
             </div>
+
+            <div>Единицы температуры: <span id="degree-unit" th:text="${typeOfDegrees}">C</span></div>
+            <button id="toggle-degree-btn">Сменить на <span id="toggle-degree-label">°K</span></button>
         </div>
     </main>
 
@@ -310,6 +313,17 @@
                 .catch(() => {
                     document.getElementById('fav-cities-count').textContent = '?';
                 });
+        });
+
+        document.getElementById('toggle-degree-btn').addEventListener('click', function() {
+            fetch('/profile/degree', { method: 'PUT' })
+                .then(() => window.location.reload());
+        });
+
+        // (опционально) Менять текст кнопки в зависимости от текущей настройки:
+        document.addEventListener('DOMContentLoaded', function() {
+            const current = document.getElementById('degree-unit').textContent.trim();
+            document.getElementById('toggle-degree-label').textContent = current === 'C' ? '°K' : '°C';
         });
     </script>
 </body>

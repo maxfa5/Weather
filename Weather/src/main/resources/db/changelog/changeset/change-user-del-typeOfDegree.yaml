@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250703-2-drop-type-of-degrees
+      author: Max Fa
+      changes:
+        - dropColumn:
+            columnName: typeOfDegrees
+            tableName: users 

@@ -9,6 +9,7 @@ import org.project.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Cookie;
@@ -33,7 +34,24 @@ public class ProfileController {
         System.out.println(sessionId.get().toString());
         SessionModel session = sessionService.getSession(sessionId.get());
         model.addAttribute("username", session.getUser().getLogin());
+        model.addAttribute("typeOfDegrees", session.getUser().getTypeOfDegrees());
         return "profile";
+    }
+
+    @PutMapping("/profile/degree") //TODO service
+    public String changeDegree(Model model, HttpServletRequest request) {
+        Optional<UUID> sessionId = cookieService.getSessionId(request);
+        if (sessionId.isEmpty()) {
+            return "redirect:/login";
+        }
+        SessionModel session = sessionService.getSession(sessionId.get());
+        if (session.getUser().getTypeOfDegrees().equals("C")) {
+            session.getUser().setTypeOfDegrees("F");
+        } else {
+            session.getUser().setTypeOfDegrees("C");
+        }
+        sessionService.updateSession(session);
+        return "redirect:/profile";
     }
 
 }

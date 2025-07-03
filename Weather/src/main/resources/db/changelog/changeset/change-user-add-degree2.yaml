@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250703-1-add-type-of-degrees
+      author: Max Fa
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: type_of_degrees
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
