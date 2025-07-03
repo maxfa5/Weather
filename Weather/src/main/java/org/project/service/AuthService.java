@@ -33,7 +33,7 @@ public class AuthService {
     }
 
     private boolean isUserExists(String login) {
-        return userRepository.findByLogin(login) != null;
+        return userRepository.findByLogin(login).isPresent();
     }
 
 }

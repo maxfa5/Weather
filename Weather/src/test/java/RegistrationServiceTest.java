@@ -5,7 +5,7 @@ import org.project.repository.UserRepository;
 import org.project.service.RegistrationService;
 
 @SpringBootTest
-public class RegistraionsServiceTest {
+public class RegistrationServiceTest {
 
     @Autowired
     private RegistrationService registrationService;

@@ -31,8 +31,9 @@ public class RegistrationService {
             }
             return false;
         } catch (Exception e) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            System.out.println(e.getMessage());
+            // Логирование ошибки при проверке существования пользователя
+            // В продакшене следует использовать логгер вместо System.out
+            System.err.println("Ошибка при проверке существования пользователя: " + e.getMessage());
             return false;
         }
     }
@@ -44,8 +45,8 @@ public class RegistrationService {
         if (login.isEmpty() || password.isEmpty()) {
             throw new ValidationException("Логин и пароль не могут быть пустыми");
         }
-        if (login.length() < 3 || password.length() < 3) {
-            throw new ValidationException("Логин и пароль должны содержать минимум 3 символа");
+        if (login.length() < 3 || password.length() < 6) {
+            throw new ValidationException("Логин должен содержать минимум 3 символа, пароль - минимум 6 символов");
         }
     }
 }

@@ -62,7 +62,11 @@ public class CookieService {
     }
 
     public int getUserIdFromSession(HttpServletRequest request) {
-        return getSession(request).orElse(null).getUser().getId();
+        SessionModel session = getSession(request).orElse(null);
+        if (session == null || session.getUser() == null) {
+            throw new IllegalStateException("Нет действительной сессии или пользователя");
+        }
+        return session.getUser().getId();
     }
 
     public void removeSessionCookie(HttpServletResponse response) {
