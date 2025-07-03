@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Cookie;
 
 @Controller
 public class ProfileController {
@@ -41,13 +40,13 @@ public class ProfileController {
         return "profile";
     }
 
-    @PutMapping("/profile/degree") //TODO service
+    @PutMapping("/profile/degree")
     public String changeDegree(Model model, HttpServletRequest request) {
         Optional<UUID> sessionId = cookieService.getSessionId(request);
         if (sessionId.isEmpty()) {
             return "redirect:/login";
         }
-        tempetureSwitchService.switchDegree(sessionId.get());
+        tempetureSwitchService.switchDegree(request);
         return "redirect:/profile";
     }
 

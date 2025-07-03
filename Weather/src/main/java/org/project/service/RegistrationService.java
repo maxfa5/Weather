@@ -7,11 +7,11 @@ import org.project.exceptions.UserAlreadyExistsException;
 import org.project.exceptions.ValidationException;
 
 @Service
-public class RegisterService {
+public class RegisterationService {
     
     private final UserRepository userRepository;
 
-    public RegisterService(UserRepository userRepository) {
+    public RegisterationService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
