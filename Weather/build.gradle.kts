@@ -37,6 +37,8 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
 }
 

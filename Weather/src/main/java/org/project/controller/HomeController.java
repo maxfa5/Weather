@@ -16,8 +16,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(weatherService.getWeather("Moscow"));
+        // Перенаправление на страницу входа
         return "redirect:/login";
     }
 } 

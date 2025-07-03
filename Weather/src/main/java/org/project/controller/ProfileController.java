@@ -33,7 +33,6 @@ public class ProfileController {
         if (sessionId.isEmpty()) {
             return "redirect:/login";
         }
-        System.out.println(sessionId.get().toString());
         SessionModel session = sessionService.getSession(sessionId.get());
         model.addAttribute("username", session.getUser().getLogin());
         model.addAttribute("typeOfDegrees", session.getUser().getTypeOfDegrees());
