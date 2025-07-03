@@ -1,6 +1,6 @@
 package org.project.controller;
 
-import org.project.service.RegisterService;
+import org.project.service.RegistrationService;
 import org.project.exceptions.UserAlreadyExistsException;
 import org.project.exceptions.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class RegisterController {
 
-    private final RegisterService registerService;
+    private final RegistrationService registerService;
     
     @Autowired
-    public RegisterController(RegisterService registerService) {
+    public RegisterController(RegistrationService registerService) {
         this.registerService = registerService;
     }
 
