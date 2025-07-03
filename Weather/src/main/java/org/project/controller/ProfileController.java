@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.project.model.SessionModel;
 import org.project.service.CookieService;
 import org.project.service.SessionService;
+import org.project.service.TempetureSwitchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +20,12 @@ public class ProfileController {
 
     private final CookieService cookieService;
     private final SessionService sessionService;
-    @Autowired
-    public ProfileController(CookieService cookieService, SessionService sessionService) {
+    private final TempetureSwitchService tempetureSwitchService;
+        @Autowired
+    public ProfileController(CookieService cookieService, SessionService sessionService, TempetureSwitchService tempetureSwitchService) {
         this.cookieService = cookieService;
         this.sessionService = sessionService;
+        this.tempetureSwitchService = tempetureSwitchService;
     }
 
     @GetMapping("/profile")
@@ -44,13 +47,7 @@ public class ProfileController {
         if (sessionId.isEmpty()) {
             return "redirect:/login";
         }
-        SessionModel session = sessionService.getSession(sessionId.get());
-        if (session.getUser().getTypeOfDegrees().equals("C")) {
-            session.getUser().setTypeOfDegrees("F");
-        } else {
-            session.getUser().setTypeOfDegrees("C");
-        }
-        sessionService.updateSession(session);
+        tempetureSwitchService.switchDegree(sessionId.get());
         return "redirect:/profile";
     }
 

@@ -79,7 +79,7 @@ public class WeatherAPIController {
                 response.put("weatherStatus", weatherData.getWeather().get(0).getMain());
                 response.put("weatherDescription", weatherData.getWeather().get(0).getDescription());
                 if (session.get().getUser().getTypeOfDegrees().equals("C")) {
-                    response.put("weatherTemperature", Math.round((Double.parseDouble(weatherData.getMain().getTemp()) - 273.15) )); //TODO service
+                    response.put("weatherTemperature", Math.round((Double.parseDouble(weatherData.getMain().getTemp()) - 273.15) ));
                 } else {
                     response.put("weatherTemperature", weatherData.getMain().getTemp());
                 }
