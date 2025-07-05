@@ -23,9 +23,9 @@ public class UserModel {
   @Column(name="password")
   String password;
 
-  @Column(name="typeOfDegrees")
-  String typeOfDegrees;
-
+ @Column(name = "type_of_degrees", nullable = false)
+  private String typeOfDegrees = "F";
+  
   public void setPassword (String password) {
     this.password = password;
   }

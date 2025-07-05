@@ -14,6 +14,7 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("org.springframework.security:spring-security-crypto:5.7.1")
 
     // JSP support
     implementation("org.apache.tomcat.embed:tomcat-embed-jasper")

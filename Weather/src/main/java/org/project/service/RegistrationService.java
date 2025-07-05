@@ -5,14 +5,16 @@ import org.project.repository.UserRepository;
 import org.project.model.UserModel;
 import org.project.exceptions.UserAlreadyExistsException;
 import org.project.exceptions.ValidationException;
-
+import org.project.service.PasswordEncoder;
 @Service
 public class RegistrationService {
     
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public RegistrationService(UserRepository userRepository) {
+    public RegistrationService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void register(String login, String password) throws UserAlreadyExistsException, ValidationException {
@@ -20,7 +22,7 @@ public class RegistrationService {
 
         UserModel user = new UserModel();
         user.setLogin(login);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
 

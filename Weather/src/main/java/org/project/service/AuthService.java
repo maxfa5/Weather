@@ -9,15 +9,19 @@ import java.util.UUID;
 
 import org.project.model.UserModel;
 import org.project.service.SessionService;
+import org.project.service.PasswordEncoder;
 
 @Service
 public class AuthService {
+    
     private final SessionService sessionService;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository, SessionService sessionService) {
+    public AuthService(UserRepository userRepository, SessionService sessionService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.sessionService = sessionService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UUID auth(String login, String password) throws UserNotFoundException, InvalidCredentialsException {
@@ -25,7 +29,7 @@ public class AuthService {
         if (user == null) {
             throw new UserNotFoundException("Пользователь с логином '" + login + "' не найден");
         }
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new InvalidCredentialsException("Неверный пароль");
         }
         UUID sessionId = sessionService.createSession(user);

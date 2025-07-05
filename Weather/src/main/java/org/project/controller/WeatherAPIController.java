@@ -78,7 +78,8 @@ public class WeatherAPIController {
                 response.put("success", true);
                 response.put("weatherStatus", weatherData.getWeather().get(0).getMain());
                 response.put("weatherDescription", weatherData.getWeather().get(0).getDescription());
-                if (session.get().getUser().getTypeOfDegrees().equals("C")) {
+                
+                if (session.get().getUser().getTypeOfDegrees() != null && session.get().getUser().getTypeOfDegrees().equals("C")) {
                     response.put("weatherTemperature", Math.round((Double.parseDouble(weatherData.getMain().getTemp()) - 273.15) ));
                 } else {
                     response.put("weatherTemperature", weatherData.getMain().getTemp());
@@ -89,6 +90,7 @@ public class WeatherAPIController {
                 // response.put("weatherClouds", weatherData.getClouds().getAll());
                 response.put("city", city);
                 } catch (Exception e) {
+                    System.out.println(e.toString());
                     response.put("success", false);
                     response.put("message", "Не удалось получить данные о погоде для города: " + city);
                 }

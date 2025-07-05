@@ -26,7 +26,7 @@ public class TempetureSwitchService {
             throw new RuntimeException("Session not found");
         }
         SessionModel session = sessionService.getSession(sessionId.get());
-        if (session.getUser().getTypeOfDegrees().equals("C")) {
+        if (session.getUser().getTypeOfDegrees()!=null && session.getUser().getTypeOfDegrees().equals("C")) {
             session.getUser().setTypeOfDegrees("F");
         } else {
             session.getUser().setTypeOfDegrees("C");
