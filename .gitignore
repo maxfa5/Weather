@@ -1,0 +1,4 @@
+# .gitignore
+application.properties
+application-local.properties
+*.secret.*
