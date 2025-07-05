@@ -24,10 +24,10 @@ public class LocationService {
     public List<LocationModel> getLocations(int userId) {
         return locationRepository.findByUserId(userId);
     }
-    public int getCountLocations(int userId) {
+    public long getCountLocations(int userId) {
         // TODO: Добавить метод countByUserId в LocationRepository для оптимизации
         // Вместо загрузки всех локаций и подсчета размера списка
-        return locationRepository.findByUserId(userId).size();
+        return locationRepository.countByUserId(userId);
     }
     public boolean locationExists(int userId, LocationModel location) {
         return locationRepository.findByUserId(userId)

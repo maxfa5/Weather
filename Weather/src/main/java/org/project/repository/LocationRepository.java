@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LocationRepository extends JpaRepository<LocationModel, Integer> {
     List<LocationModel> findByUserId(int userId);
+    long countByUserId(int userId);
+
 }

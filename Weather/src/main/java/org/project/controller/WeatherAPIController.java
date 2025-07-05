@@ -54,7 +54,7 @@ public class WeatherAPIController {
 
     @GetMapping("/locations/count")
     @ResponseBody
-    public int getCountLocations(HttpServletRequest request) {
+    public long getCountLocations(HttpServletRequest request) {
         int userId = cookieService.getUserIdFromSession(request);
         return locationService.getCountLocations(userId);
     }
