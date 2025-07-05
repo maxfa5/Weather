@@ -26,4 +26,4 @@ logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
 # Thymeleaf Configuration
 spring.thymeleaf.cache=false
 
-weather.api.key=c5b63cde8480834307398ea4c88061e6
+weather.api.key=YOUR_API_KEY_HERE

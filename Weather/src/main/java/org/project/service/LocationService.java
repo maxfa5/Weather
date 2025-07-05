@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.project.model.LocationModel;
 import org.project.repository.LocationRepository;
+import org.project.exceptions.LocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,10 @@ public class LocationService {
     public List<LocationModel> getLocations(int userId) {
         return locationRepository.findByUserId(userId);
     }
-    public int getCountLocations(int userId) {
-        return locationRepository.findByUserId(userId).size();
+    public long getCountLocations(int userId) {
+        // TODO: Добавить метод countByUserId в LocationRepository для оптимизации
+        // Вместо загрузки всех локаций и подсчета размера списка
+        return locationRepository.countByUserId(userId);
     }
     public boolean locationExists(int userId, LocationModel location) {
         return locationRepository.findByUserId(userId)
@@ -32,19 +35,19 @@ public class LocationService {
                 .anyMatch(loc -> loc.getName().equalsIgnoreCase(location.getName()) && loc.getLatitude() == location.getLatitude() && loc.getLongitude() == location.getLongitude());
     }
 
-    public LocationModel addLocation(LocationModel location) {
+    public LocationModel addLocation(LocationModel location) throws LocationException {
         if (locationExists(location.getUserId(), location)) {
-            throw new RuntimeException("Локация уже существует");
+            throw new LocationException("Локация уже существует");
         }
         return locationRepository.save(location);
     }
 
-    public void deleteLocation(int locationId, int userId) {
+    public void deleteLocation(int locationId, int userId) throws LocationException {
         LocationModel location = locationRepository.findById(locationId)
-                .orElseThrow(() -> new RuntimeException("Локация не найдена"));
+                .orElseThrow(() -> new LocationException("Локация не найдена"));
         
         if (location.getUserId() != userId) {
-            throw new RuntimeException("Нет прав для удаления этой локации");
+            throw new LocationException("Нет прав для удаления этой локации");
         }
         
         locationRepository.deleteById(locationId);
